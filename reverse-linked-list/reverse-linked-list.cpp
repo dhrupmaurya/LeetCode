@@ -10,18 +10,38 @@
  */
 class Solution {
 public:
+    ListNode* CreateNode(vector<int>v){
+       ListNode *head=NULL;
+       ListNode*current=NULL;
+        int n=v.size();
+        for(int i=n-1;i>=0;i--){
+             ListNode* newNode=new ListNode(v[i]);
+            if(!head){
+                head=newNode;
+                current=newNode;
+            }
+            else{
+                current->next=newNode;
+                current=newNode;
+            }
+            
+        }
+        return head;
+    }
     ListNode* reverseList(ListNode* head) {
         if(!head){
             return NULL;
         }
-        ListNode* cur=head, *prev=NULL;
-        while(cur){
-            ListNode *next1=cur->next;
-            cur->next=prev;
-            prev=cur;
-            cur=next1;
+        vector<int>num;
+        ListNode* temp=head;
+        while(temp){
+            num.push_back(temp->val);
+            temp=temp->next;
         }
-        return prev;
+        ListNode* res=CreateNode(num);
+        
+        return res;
+        
     }
 };
 
